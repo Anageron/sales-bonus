@@ -70,6 +70,7 @@ function analyzeSalesData(data, options) {
     {}
   );
   
+ 
 
   const productIndex = data.products.reduce(
     (result, product) => ({
@@ -97,7 +98,10 @@ function analyzeSalesData(data, options) {
 
     // Расчёт прибыли для каждого товара
 
+    seller.revenue = (seller.revenue || 0) + record.total_amount;
+
     record.items.forEach((item) => {
+
       const product = productIndex[item.sku]; // Товар
 
       // Посчитать себестоимость (cost) товара как product.purchase_price, умноженную на количество товаров из чека
@@ -119,6 +123,7 @@ function analyzeSalesData(data, options) {
       seller.profit = (seller.profit || 0) + profit;
 
       // Учёт количества проданных товаров
+
       if (!seller.products_sold) {
         seller.products_sold = {};
       }
@@ -127,7 +132,7 @@ function analyzeSalesData(data, options) {
         (seller.products_sold[item.sku] || 0) + item.quantity;
     });
 
-    seller.revenue = (seller.revenue || 0) + total_amount;
+    
 
    
    

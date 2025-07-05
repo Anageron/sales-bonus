@@ -138,7 +138,7 @@ function analyzeSalesData(data, options) {
       return b.profit - a.profit;
     });
 
-    console.log(sellerStats);
+   
 
   // @TODO: Назначение премий на основе ранжирования
 
